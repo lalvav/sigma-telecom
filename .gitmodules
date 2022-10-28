@@ -1,0 +1,4 @@
+[submodule "addons-konos"]
+	path = addons-konos
+	url = git@github.com:dansanti/addons-konos.git
+	branch = 15.0_dev
