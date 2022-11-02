@@ -4,5 +4,5 @@
 	branch = 15.0_dev
 [submodule "facturacion_electronica"]
 	path = facturacion_electronica
-	url = git@gitlab.com:odoocoop/facturacion_electronica.git
+	url = https://gitlab.com/odoocoop/facturacion_electronica.git
 	branch = 15.0
