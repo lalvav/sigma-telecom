@@ -6,3 +6,8 @@
 	path = facturacion_electronica
 	url = https://gitlab.com/odoocoop/facturacion_electronica.git
 	branch = 15.0
+
+[submodule "KonosCL/addons-konos"]
+	path = KonosCL/addons-konos
+	url = git@github.com:KonosCL/addons-konos.git
+	branch = 9.0
