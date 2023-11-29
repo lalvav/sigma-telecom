@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="account_report" >
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <div class="container">
+                        <div class="header">
+                            <div class="row">
+                                <div class="col-8" style="">
+                                    <div class="row justify-content-center align-items-center d-flex text-center">
+                                        <div class="col-1"></div>
+                                        <div class="col-10">
+                                            <img t-if="res_company.logo" t-att-src="image_data_uri(res_company.logo)" alt="Logo"  style="height:100px" /><br/>
+                                            <div class="m-0">
+                                                <strong><span class="mt-0 mb-0"  t-field="res_company.name"/></strong>
+                                            </div>
+                                            <div class="m-0">
+                                                <span class="mt-0 mb-0" style="font-size: 9px;">Giro:<span class="mt-0 mb-0" t-field="res_company.l10n_cl_activity_description"/></span>
+                                            </div>
+                                            <div class="m-0">
+                                                <span class="mt-0 mb-0" style="font-size: 9px;"><span class="mt-0 mb-0" t-field="res_company.street"/>, <span class="mt-0 mb-0" t-field="res_company.city"/>, <span class="mt-0 mb-0" t-field="res_company.state_id.name"/></span>
+                                            </div>
+                                            <div class="m-0">
+                                                <span class="mt-0 mb-0" style="font-size: 9px;">Teléfono:<span class="mt-0 mb-0" t-field="res_company.phone"/>, Email:<span class="mt-0 mb-0" t-field="res_company.email"/></span>
+                                            </div>
+                                        </div>   
+                                        <div class="col-1"></div>
+                                    </div>
+                                </div>
+                                <div class="col-4 text-center" style="">
+                                    <div class="row text-center pb-2 pt-2" style="border:3px solid red; ">
+                                        <div class="col-1"></div>
+                                        <div class="col-10">
+                                            <span style="color:red;">R.U.T:</span><span style="color:red;" t-field="res_company.vat"/><br/>
+                                            <t t-if="o.l10n_latam_document_type_id.code=='33'">
+                                                <span style="color:red;">FACTURA ELECTRONICA</span><br/>
+                                            </t>
+                                            <t t-if="o.l10n_latam_document_type_id.code=='39'">
+                                                <span style="color:red;">BOLETA ELECTRONICA</span><br/>
+                                            </t>
+                                            <t t-if="o.l10n_latam_document_type_id.code=='61'">
+                                                <span style="color:red;">NOTA DE CREDITO ELECTRONICA</span><br/>
+                                            </t>
+                                            <t t-if="o.l10n_latam_document_type_id.code=='56'">
+                                                <span style="color:red;">NOTA DE DEBITO ELECTRONICA</span><br/>
+                                            </t>
+                                            <span style="color:red;">Nº <span t-field="o.l10n_latam_document_number"/></span><br/>
+                                        </div>
+                                        <div class="col-1"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="informacion mb-2" style="">
+                            <div style="font-size: 12px; border: 2px solid black; " class="row p-1">
+                                <div class="col-7">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <span><strong>Cliente</strong></span>
+                                        </div>
+                                        <div class="col-9">
+                                            <p><span t-field="o.partner_id.name"/></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <span><strong>RUT</strong></span>
+                                        </div>
+                                        <div class="col-9">
+                                            <p><span t-field="o.partner_id.vat"/></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <span><strong>Dirección</strong></span>
+                                        </div>
+                                        <div class="col-9">
+                                            <p><span t-field="o.partner_id.street"/></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <span><strong>Comuna</strong></span>
+                                        </div>
+                                        <div class="col-9">
+                                            <p><span t-field="o.partner_id.city"/></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <span><strong>Ciudad</strong></span>
+                                        </div>
+                                        <div class="col-9">
+                                            <p><span t-field="o.partner_id.state_id.name"/></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <span><strong>Giro</strong></span>
+                                        </div>
+                                        <div class="col-9">
+                                            <p><span t-field="o.partner_id.l10n_cl_activity_description"/></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <span><strong>Teléfono</strong></span>
+                                        </div>
+                                        <div class="col-9">
+                                            <p><span t-field="o.partner_id.phone"/></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-5">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <span><strong>Fecha de emisión</strong></span>
+                                        </div>
+                                        <div class="col-6">
+                                            <p><span t-field="o.invoice_date"/></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <span><strong>Fecha de Vencimiento</strong></span>
+                                        </div>
+                                        <div class="col-6">
+                                            <p><span t-field="o.invoice_date_due"/></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <span><strong>Método de Despacho</strong></span>
+                                        </div>
+                                        <div class="col-6">
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <span><strong>Canal de Pago</strong></span>
+                                        </div>
+                                        <div class="col-6">
+                                            <p>Chile</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <span><strong>Vendedor</strong></span>
+                                        </div>
+                                        <div class="col-6">
+                                            <p><span t-field="o.invoice_user_id.name"/></p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <span><strong>Moneda</strong></span>
+                                        </div>
+                                        <div class="col-6">
+                                            <p><span t-field="o.currency_id.name"/></p>
+                                        </div>
+                                    </div> 
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <span><strong>Documento de Origen</strong></span>
+                                        </div>
+                                        <div class="col-6">
+                                            <p><span t-field="o.ref"/></p>
+                                        </div>
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tabla">
+                            <table style="font-size: 9px; padding-bottom:0px !important; margin-bottom:0px !important;" class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Código</th>
+                                        <th scope="col">Descripción</th>
+                                        <th scope="col">Cantidad</th>
+                                        <th scope="col">Precio</th>
+                                        <th scope="col">Subtotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody t-foreach="o.invoice_line_ids" t-as="d">
+                                    <tr>
+                                        <td><span t-if="d.product_id" t-field="d.product_id.default_code"/></td>
+                                        <td><span t-field="d.name"/></td>
+                                        <td><span t-field="d.quantity"/></td>
+                                        <td><span t-field="d.price_unit"/></td>
+                                        <td><span t-field="d.price_subtotal"/></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="footer">
+                            <div class="row" style="margin-top: 20px; margin-left: -14px; margin-bottom: 0px;">
+                                <div class="col-8" style="font-size: 13px; text-align: start; margin:0px">
+                                    <div class="class" style="border:2px solid black; ">
+                                        <p style="margin-bottom: 0px;"><strong>Son: </strong><span t-esc="o.currency_id.amount_to_text(o.amount_total)"/></p>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6 text-center">
+                                            <t t-if="o.l10n_cl_sii_barcode">
+                                                <t t-set="barcode_stamp" t-value="o._pdf417_barcode(o.l10n_cl_sii_barcode)"/>
+                                                <t t-if="barcode_stamp">
+                                                    <img class="img-fluid" t-attf-src="data:image/*;base64,{{barcode_stamp}}"/>
+                                                    <p t-att-style="'color: %s;' % o.company_id.primary_color" class="text-center small">
+                                                        Timbre Electrónico SII<br />
+                                                        Resolución Nº: <span t-field="o.company_id.l10n_cl_dte_resolution_number"/>
+                                                        de Fecha: <span t-field="o.company_id.l10n_cl_dte_resolution_date" t-field-options='{"widget": "date"}'/>
+                                                        <span name="verification_url">Verifique documento en www.sii.cl</span>
+                                                    </p>
+                                                </t>
+                                            </t>
+                                            <!-- <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.l10n_cl_sii_barcode, 600, 100)" style="width:300px;height:50px"/> -->
+                                            <!-- <t t-if="o.l10n_cl_sii_barcode">
+                                                <img t-att-src="'data:image/png;base64,' + o.l10n_cl_sii_barcode"/>
+                                            </t> -->
+                                            <!-- <span t-esc="o.l10n_cl_sii_barcode"/> -->
+                                            <!--<img t-if="o.sii_barcode_img" t-att-src="'data:image/png;base64,' + o.sii_barcode_img" width="4.6cm" height="4.5cm"/>-->
+                                            <p style="margin-bottom: 0px !important; font-size: 10px;"><strong>Timbre Electrónico SII</strong></p>
+                                            <p style="font-size: 10px;">Res. 80 de 2014 Verifique documento<br/>www.sii.cl</p>
+                                        </div>
+                                        <div class="col-6">
+                                            <strong>Datos del Chofer:</strong><br/>
+                                            <span>Nombre: </span><br/>
+                                            <span>RUT: </span><br/>
+                                            <span>Patente: </span><br/>
+                                            <span>Motivo: </span>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <table class="table table-sm" style="font-size: 13px; margin: 10px auto;">
+                                        <tbody class="table">
+                                            <tr>
+                                                <th class="">Subtotal: </th>
+                                                <td class="text-end" style="text-align: end;"><span t-field="o.amount_untaxed"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th class="">Impuestos: </th>
+                                                <td class="text-end " style="text-align: end;"><span t-field="o.amount_tax"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th class="">Total: </th>
+                                                <td class="text-end " style="text-align: end;"><span t-field="o.amount_total"/></td>
+                                            </tr>
+                                            <tr>
+                                                <th class=""><strong>Total Cantidad: </strong></th>
+                                                <td class="text-end " style="text-align: end;"><span t-esc="sum(o.invoice_line_ids.mapped('quantity'))"/></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-12" style="font-size: 13px;">
+                                    <p style="margin-bottom: 0px !important; margin-top: 0px !important;" ><strong>Terminos y Condiciones</strong></p>
+                                    <hr style="margin-bottom: 0px !important; margin-top: 0px !important;" />
+                                    <span>Precio: Dolar Americano, USD</span><br/>
+                                    <span>Plazo de entrega: 15 días, entregado en bodega del cliente en Santiago</span><br/>
+                                    <span>Validez de la oferta: 30 días</span><br/>
+                                    <span>Condición de pago: 30 días</span>
+                                </div>
+                            </div> 
+                            <div class="row">
+                                <div class="col-12 p-4" style="font-size: 13px; text-align: start; margin:0px; width: 100%; border: 1px solid black;">
+                                    <p style="margin-bottom: 0px;"><strong>Nombre</strong>:_________________________________________ <strong>R.U.T</strong>:____________________</p>
+                                    <p style="margin-bottom: 0px;"><strong>Recinto</strong>:__________________ <strong>Fecha</strong>:_________________ <strong>Firma</strong>:________________</p>
+                                    <p style="margin-bottom: 0px; width: 100%;">
+                                        "El acuse de recibo que se declara en este acto, de acuerdo a lo dispuesto en la letra b) del Art. 4° y la letra c) del Art. 5° de la Ley
+                                        19.983, acredita que la entrega de la mercadería(s) o servicio(s) prestado(s) ha(n) sido recibido(s)"
+                                    </p>
+                                </div>
+                            </div>                    
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>

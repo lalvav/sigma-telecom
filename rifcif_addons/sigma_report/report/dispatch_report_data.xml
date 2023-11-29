@@ -1,0 +1,14 @@
+<odoo>
+	<data>
+		<record id="dispatch_report_data" model="ir.actions.report">
+			<field name="name">Guía de Despacho</field>	
+			<field name="model">stock.picking</field>
+			<field name="report_type">qweb-pdf</field>	
+			<field name="report_name">sigma_report.dispatch_report</field>
+			<field name="report_file">sigma_report.dispatch_report</field>   
+			<field name="print_report_name">'Guia de Despacho'</field>	
+			<field name="binding_model_id" ref="model_stock_picking"/>
+            <field name="paperformat_id" ref="sigma_report.paperformat"/>
+		</record>
+	</data>
+</odoo>
